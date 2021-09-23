@@ -1,0 +1,30 @@
+all: copy object.o move clear part_of_the_matrix
+
+copy:
+	mkdir obj
+	cp inc/*.h obj
+	cp src/*.c obj
+
+object.o:
+	clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c obj/*.c
+
+move:
+	cp *.o obj
+
+clear:
+	rm *.o
+	rm obj/*.h
+	rm obj/*.c
+
+part_of_the_matrix:
+	clang -std=c11 -Wall -Wextra -Werror -Wpedantic -o part_of_the_matrix obj/*.o
+
+uninstall:
+	rm -rf obj
+	rm part_of_the_matrix
+	rm -rf *.o
+
+reinstall:
+	make uninstall
+	make
+
